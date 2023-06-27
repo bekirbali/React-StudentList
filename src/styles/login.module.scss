@@ -1,4 +1,76 @@
 .login {
   background: linear-gradient(71.17deg, #feaf00 19.35%, #f8d442 90.12%);
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card {
+    width: 475px;
+    height: 550px;
+    background-color: #f1f6f3;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+
+    h1 {
+      margin-top: 2rem;
+      border-left: 6px solid #f8d442;
+      text-transform: uppercase;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-weight: 700;
+      line-height: 39px;
+      letter-spacing: 0em;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      margin-top: 2.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-top: 1rem;
+      color: #6c6c6c;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 0 1rem;
+      gap: 1rem;
+
+      input {
+        width: 415px;
+        border: 1px solid #e5e5e5;
+        color: #2e2e2e;
+        padding: 14px;
+        border-radius: 4px;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: #cdcdcd;
+        }
+      }
+
+      button {
+        width: 415px;
+        background-color: #feaf00;
+        text-transform: uppercase;
+        height: 44px;
+        border: none;
+        border-radius: 4px;
+      }
+    }
+  }
 }
