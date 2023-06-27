@@ -8,7 +8,7 @@
   .card {
     width: 475px;
     height: 550px;
-    background-color: #f1f6f3;
+    background-color: #fff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@
       align-items: center;
       width: 100%;
       padding: 0 1rem;
-      gap: 1rem;
+      //   gap: 1.5rem;
 
       input {
         width: 415px;
@@ -53,14 +53,28 @@
         color: #2e2e2e;
         padding: 14px;
         border-radius: 4px;
-
         &:focus {
           outline: none;
         }
 
         &::placeholder {
           color: #cdcdcd;
+          font-size: 12px;
+          line-height: 14.63px;
         }
+      }
+
+      .emails {
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .passwords {
+        display: flex;
+        gap: 14px;
+        flex-direction: column;
       }
 
       button {
@@ -70,6 +84,33 @@
         height: 44px;
         border: none;
         border-radius: 4px;
+        margin-top: 1rem;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      button.sign {
+        margin-bottom: 20px;
+      }
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: #6c6c6c;
+        font-weight: 400;
+        margin-top: auto;
+
+        button.reset {
+          background: none;
+          width: auto;
+          height: auto;
+          margin: 0;
+          text-transform: capitalize;
+          color: #feaf00;
+          text-decoration: underline;
+          //   border-bottom: 1px solid #feaf00;
+        }
       }
     }
   }
