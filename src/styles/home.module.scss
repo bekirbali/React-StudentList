@@ -1,0 +1,15 @@
+.home {
+  height: 100vh;
+  display: flex;
+  .navbar {
+    background-color: red;
+    flex: 2;
+  }
+
+  .outlet {
+    flex: 12;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+  }
+}
