@@ -26,7 +26,6 @@
     line-height: 17px;
 
     li {
-      background-color: #feaf00;
       list-style-type: none;
       width: 193px;
       height: 41px;
@@ -40,6 +39,9 @@
         display: flex;
         align-items: center;
       }
+    }
+    .active {
+      background-color: #feaf00;
     }
   }
 }
