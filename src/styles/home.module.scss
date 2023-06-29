@@ -1,33 +1,4 @@
 .home {
   height: 100vh;
   display: flex;
-  .navbar {
-    padding-left: 1rem;
-    background-color: red;
-    flex: 2;
-    width: 250px;
-  }
-
-  .outlet {
-    flex: 12;
-    height: 100vh;
-    width: 100%;
-    background-color: black;
-
-    .outletHome {
-      background-color: cyan;
-      height: 50vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .outletOutlet {
-      background-color: yellow;
-      height: 50vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
 }

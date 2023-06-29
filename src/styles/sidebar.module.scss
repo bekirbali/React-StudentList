@@ -1,0 +1,45 @@
+.sidebar {
+  background-color: #f2eae1;
+  width: 270px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .profile {
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 193px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+
+    li {
+      background-color: #feaf00;
+      list-style-type: none;
+      width: 193px;
+      height: 41px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      span {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
