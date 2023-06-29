@@ -43,5 +43,10 @@
     .active {
       background-color: #feaf00;
     }
+    .logout {
+      &:hover {
+        background-color: #feaf00;
+      }
+    }
   }
 }
