@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { BsBookmark, BsCurrencyDollar } from "react-icons/bs";
 import { AiOutlineHome } from "react-icons/ai";
