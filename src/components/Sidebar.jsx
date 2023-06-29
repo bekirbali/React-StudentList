@@ -50,7 +50,7 @@ const Sidebar = () => {
           );
         })}
 
-        <li>
+        <li className={styles.logout}>
           Logout{" "}
           <span>
             <FiLogOut size={18} />
