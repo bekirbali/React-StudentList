@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { BsBookmark, BsCurrencyDollar } from "react-icons/bs";
@@ -14,14 +14,20 @@ import styles from "../styles/sidebar.module.scss";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const [active, setActive] = useState("Home");
+
+  const clickHandler = (item) => {
+    navigate(item.path);
+    setActive(item.name);
+  };
 
   const listItems = [
     { name: "Home", path: "", icon: <AiOutlineHome size={18} /> },
-    { name: "Course", path: "asdf", icon: <BsBookmark size={18} /> },
+    { name: "Course", path: "", icon: <BsBookmark size={18} /> },
     { name: "Students", path: "students", icon: <FaGraduationCap size={18} /> },
-    { name: "Payment", path: "fda", icon: <BsCurrencyDollar size={18} /> },
-    { name: "Report", path: "fasdf", icon: <RiFileChartLine size={18} /> },
-    { name: "Settings", path: "asdf", icon: <GiSettingsKnobs size={18} /> },
+    { name: "Payment", path: "", icon: <BsCurrencyDollar size={18} /> },
+    { name: "Report", path: "", icon: <RiFileChartLine size={18} /> },
+    { name: "Settings", path: "", icon: <GiSettingsKnobs size={18} /> },
   ];
   return (
     <nav className={styles.sidebar}>
@@ -34,7 +40,11 @@ const Sidebar = () => {
       <ul className={styles.menu}>
         {listItems.map((item) => {
           return (
-            <li onClick={() => navigate(item.path)}>
+            <li
+              key={item.name}
+              onClick={() => clickHandler(item)}
+              className={active === `${item.name}` ? styles.active : ""}
+            >
               <span className={styles.icons}> {item.icon}</span> {item.name}
             </li>
           );
