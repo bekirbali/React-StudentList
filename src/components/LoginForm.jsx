@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/login.module.scss";
 
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 const LoginForm = () => {
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
+    setAuth(true);
+    console.log(auth);
+    navigate("/dashboard");
   };
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
