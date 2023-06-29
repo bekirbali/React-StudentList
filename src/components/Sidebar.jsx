@@ -50,7 +50,7 @@ const Sidebar = () => {
           );
         })}
 
-        <li className={styles.logout}>
+        <li className={styles.logout} onClick={() => navigate("/")}>
           Logout{" "}
           <span>
             <FiLogOut size={18} />
