@@ -7,10 +7,29 @@
   align-items: center;
 
   .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+
+    h1 {
+      border-left: 4px solid #f8d442;
+      padding-left: 12px;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
     img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
+      margin-top: 4rem;
+    }
+
+    h2 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -18,7 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 1rem;
     width: 193px;
     font-family: Montserrat;
     font-size: 14px;
@@ -33,20 +52,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+
       cursor: pointer;
+      transition: all 0.3s ease-in-out;
       span {
         display: flex;
         align-items: center;
+      }
+      &:hover {
+        background-color: #ffd272;
+      }
+      &:active {
+        background-color: #feaf00;
       }
     }
     .active {
       background-color: #feaf00;
     }
     .logout {
-      &:hover {
-        background-color: #feaf00;
-      }
+      margin-top: 5rem;
     }
   }
 }
