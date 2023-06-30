@@ -3,9 +3,11 @@
   font-family: Montserrat;
   height: calc(100vh - 60px);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
   width: 100%;
+  padding: 30px;
   gap: 2rem;
   .card {
     width: 255px;
