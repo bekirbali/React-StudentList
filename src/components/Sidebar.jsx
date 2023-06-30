@@ -22,12 +22,22 @@ const Sidebar = () => {
   };
 
   const listItems = [
-    { name: "Home", path: "", icon: <AiOutlineHome size={18} /> },
-    { name: "Course", path: "", icon: <BsBookmark size={18} /> },
-    { name: "Students", path: "students", icon: <FaGraduationCap size={18} /> },
-    { name: "Payment", path: "", icon: <BsCurrencyDollar size={18} /> },
-    { name: "Report", path: "", icon: <RiFileChartLine size={18} /> },
-    { name: "Settings", path: "", icon: <GiSettingsKnobs size={18} /> },
+    { name: "Home", path: "", icon: <AiOutlineHome size={20} /> },
+    { name: "Course", path: "", icon: <BsBookmark size={20} /> },
+    { name: "Students", path: "students", icon: <FaGraduationCap size={20} /> },
+    {
+      name: "Payment",
+      path: "",
+      icon: (
+        <BsCurrencyDollar size={20} style={{ border: "1px solid black" }} />
+      ),
+    },
+    { name: "Report", path: "", icon: <RiFileChartLine size={20} /> },
+    {
+      name: "Settings",
+      path: "",
+      icon: <GiSettingsKnobs size={20} style={{ border: "1px solid black" }} />,
+    },
   ];
   return (
     <nav className={styles.sidebar}>
@@ -45,7 +55,7 @@ const Sidebar = () => {
               onClick={() => clickHandler(item)}
               className={active === `${item.name}` ? styles.active : ""}
             >
-              <span className={styles.icons}> {item.icon}</span> {item.name}
+              {item.icon} <span className={styles.names}>{item.name}</span>
             </li>
           );
         })}

@@ -1,4 +1,56 @@
 .home {
-  height: 100vh;
+  font-family: Montserrat;
+  height: calc(100vh - 18px);
   display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100%;
+  gap: 2rem;
+  .card {
+    width: 255px;
+    height: 157px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    h2 {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      color: #6c6c6c;
+    }
+
+    .number {
+      display: flex;
+      align-items: flex-end;
+
+      h3 {
+        font-size: 30px;
+        color: black;
+        span {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .student {
+    background-color: #f0f9ff;
+  }
+
+  .course {
+    background-color: #fef6fb;
+  }
+
+  .payment {
+    background-color: #fefbec;
+  }
+
+  .users {
+    background: linear-gradient(110.42deg, #feaf00 18.27%, #f8d442 91.84%);
+    color: white;
+
+    h2 {
+      color: white;
+    }
+  }
 }
