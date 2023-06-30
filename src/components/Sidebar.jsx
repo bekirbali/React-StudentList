@@ -6,6 +6,8 @@ import { AiOutlineHome } from "react-icons/ai";
 import { FaGraduationCap } from "react-icons/fa";
 import { RiFileChartLine } from "react-icons/ri";
 import { GiSettingsKnobs } from "react-icons/gi";
+
+import { sidebarListItems } from "../utils/arrays";
 import { FiLogOut } from "react-icons/fi";
 
 import avatar from "../assets/avatar.jpg";
@@ -48,7 +50,7 @@ const Sidebar = () => {
         <h4>Admin</h4>
       </div>
       <ul className={styles.menu}>
-        {listItems.map((item) => {
+        {sidebarListItems.map((item) => {
           return (
             <li
               key={item.name}
