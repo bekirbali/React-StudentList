@@ -6,10 +6,6 @@ const Students = () => {
       <h1>Students</h1>
       <ul>
         <li>asdgsdgkhl</li>
-        <li>asdgsdgkhl</li>
-        <li>asdgsdgkhl</li>
-        <li>asdgsdgkhl</li>
-        <li>asdgsdgkhl</li>
       </ul>
     </div>
   );
