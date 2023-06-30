@@ -1,7 +1,7 @@
 .sidebar {
   background-color: #f2eae1;
   width: 270px;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 20px;
     width: 193px;
     font-size: 14px;
     font-weight: 500;
@@ -83,7 +83,7 @@
       background-color: #feaf00;
     }
     .logout {
-      margin-top: 5rem;
+      margin-top: 102px;
       span {
         display: flex;
         align-items: center;

@@ -1,6 +1,7 @@
 .home {
+  background-color: #fdfdfd;
   font-family: Montserrat;
-  height: calc(100vh - 18px);
+  height: calc(100vh - 60px);
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
@@ -11,7 +12,16 @@
     height: 157px;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    .icons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
     h2 {
       font-family: Montserrat;
       font-size: 14px;
@@ -26,6 +36,7 @@
 
       h3 {
         font-size: 30px;
+        font-weight: 700;
         color: black;
         span {
           font-size: 18px;
@@ -39,6 +50,9 @@
 
   .course {
     background-color: #fef6fb;
+    .icons {
+      gap: 1.3rem;
+    }
   }
 
   .payment {
@@ -48,6 +62,9 @@
   .users {
     background: linear-gradient(110.42deg, #feaf00 18.27%, #f8d442 91.84%);
     color: white;
+    .icons {
+      gap: 1.3rem;
+    }
 
     h2 {
       color: white;
