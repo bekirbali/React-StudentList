@@ -1,0 +1,46 @@
+.students {
+  background-color: #f8f8f8;
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .student {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      img {
+        width: 65px;
+        height: 55px;
+        border-radius: 0.5rem;
+      }
+
+      p {
+        flex: 3;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+      }
+
+      .name {
+        flex: 3;
+        p {
+          padding-left: 3rem;
+        }
+      }
+
+      .icon {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
