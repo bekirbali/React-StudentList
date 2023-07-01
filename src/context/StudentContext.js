@@ -6,9 +6,9 @@ export const StudentContext = createContext();
 const StudentContextProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
 
-  const getStudents = async (skip) => {
+  const getStudents = async (skip, rows) => {
     const { data } = await axios.get(
-      `https://dummyjson.com/users?limit=6&skip=${skip}`
+      `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
     );
     setStudents(data.users);
     console.log(data.users);

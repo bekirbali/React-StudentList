@@ -15,3 +15,15 @@ h4 {
 button:hover {
   cursor: pointer;
 }
+
+select {
+  background: none;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}

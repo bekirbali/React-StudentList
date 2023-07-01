@@ -8,11 +8,12 @@ const Students = () => {
   const { students, getStudents } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
+  const [rows, setRows] = useState(6);
 
   useEffect(() => {
-    getStudents(skip);
+    getStudents(skip, rows);
     console.log(students);
-  }, [skip]);
+  }, [skip, rows]);
   return (
     <div className={styles.students}>
       <h1>Students List</h1>
@@ -32,11 +33,19 @@ const Students = () => {
             </div>
           );
         })}
-        <button onClick={() => setSkip(skip && skip - 6)}>backward</button>
-        <button onClick={() => setSkip(skip === 96 ? skip + 4 : skip + 6)}>
-          forward
-        </button>
       </div>
+      <div>
+        <p>
+          Rows per page:{" "}
+          <select onChange={(e) => setRows(e.target.value)}>
+            <option value="6">6</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+          </select>
+        </p>
+      </div>
+      <button onClick={() => setSkip(skip && skip - 6)}>backward</button>
+      <button onClick={() => setSkip(skip + 6)}>forward</button>
     </div>
   );
 };
