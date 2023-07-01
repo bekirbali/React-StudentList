@@ -3,6 +3,7 @@ import { StudentContext } from "../context/StudentContext";
 import styles from "../styles/students.module.scss";
 
 import { BsPencil } from "react-icons/bs";
+import { FiTrash } from "react-icons/fi";
 
 const Students = () => {
   const { students, getStudents } = useContext(StudentContext);
@@ -31,7 +32,7 @@ const Students = () => {
               <p>{student.company.name}</p>
               <p className={styles.icon}>
                 {<BsPencil size={19} />}
-                {<FiTrash />}{" "}
+                {<FiTrash size={18} />}
               </p>
             </div>
           );
