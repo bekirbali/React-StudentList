@@ -29,7 +29,10 @@ const Students = () => {
               <p>{student.phone}</p>
               <p>{student.domain}</p>
               <p>{student.company.name}</p>
-              <p className={styles.icon}>{<BsPencil size={19} />} </p>
+              <p className={styles.icon}>
+                {<BsPencil size={19} />}
+                {<FiTrash />}{" "}
+              </p>
             </div>
           );
         })}
