@@ -38,7 +38,7 @@ const Students = () => {
           );
         })}
       </div>
-      <div>
+      <div className={styles.row}>
         <p>
           Rows per page:{" "}
           <select onChange={(e) => setRows(e.target.value)}>
@@ -47,9 +47,11 @@ const Students = () => {
             <option value="18">18</option>
           </select>
         </p>
+        <div className={styles.buttons}>
+          <button onClick={() => setSkip(skip && skip - 6)}>backward</button>
+          <button onClick={() => setSkip(skip + 6)}>forward</button>
+        </div>
       </div>
-      <button onClick={() => setSkip(skip && skip - 6)}>backward</button>
-      <button onClick={() => setSkip(skip + 6)}>forward</button>
     </div>
   );
 };
