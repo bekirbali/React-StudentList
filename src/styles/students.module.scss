@@ -6,7 +6,7 @@
     gap: 0.5rem;
     overflow: auto;
     height: calc(100vh - 10rem);
-
+    padding: 1rem 2rem;
     .student {
       display: flex;
       justify-content: space-between;
@@ -45,6 +45,23 @@
           cursor: pointer;
         }
       }
+    }
+  }
+  .row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-right: 2rem;
+
+    p {
+      //styleName: Reg 14 (0.3 px);
+      font-family: Mulish;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.30000001192092896px;
+      text-align: left;
+      color: #9fa2b4;
     }
   }
 }
