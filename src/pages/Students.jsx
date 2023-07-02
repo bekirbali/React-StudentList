@@ -4,12 +4,14 @@ import styles from "../styles/students.module.scss";
 
 import { BsPencil } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 const Students = () => {
   const { students, getStudents } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
   const [rows, setRows] = useState(6);
+  const [perPage, setPerPage] = useState(1);
 
   useEffect(() => {
     getStudents(skip, rows);
@@ -47,9 +49,10 @@ const Students = () => {
             <option value="18">18</option>
           </select>
         </p>
+
         <div className={styles.buttons}>
-          <button onClick={() => setSkip(skip && skip - 6)}>backward</button>
-          <button onClick={() => setSkip(skip + 6)}>forward</button>
+          <AiOutlineArrowLeft onClick={() => setSkip(skip && skip - 6)} />
+          <AiOutlineArrowRight onClick={() => setSkip(skip + 6)} />
         </div>
       </div>
     </div>
