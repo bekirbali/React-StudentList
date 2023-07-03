@@ -1,7 +1,6 @@
 .sidebar {
   background-color: #f2eae1;
   width: 270px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,6 +55,14 @@
     font-weight: 500;
     line-height: 17px;
 
+    .navLink {
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: Montserrat;
+      &:visited {
+        color: #000000;
+      }
+    }
     li {
       list-style-type: none;
       width: 193px;
@@ -78,9 +85,6 @@
       &:active {
         background-color: #feaf00;
       }
-    }
-    .active {
-      background-color: #feaf00;
     }
     .logout {
       margin-top: 102px;

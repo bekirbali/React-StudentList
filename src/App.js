@@ -5,13 +5,13 @@ import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
-    <div>
+    <>
       <AuthContextProvider>
         <StudentContextProvider>
           <AppRouter />
         </StudentContextProvider>
       </AuthContextProvider>
-    </div>
+    </>
   );
 };
 

@@ -1,12 +1,107 @@
 .students {
   background-color: #f8f8f8;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  position: relative;
+  .topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    h1 {
+      font-family: Montserrat;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 27px;
+    }
+    form {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      .search {
+        position: relative;
+        input {
+          width: 212px;
+          height: 37px;
+          border: 1px solid #e5e5e5;
+          padding: 8px 12px;
+          border-radius: 0.5rem;
+          &::placeholder {
+            color: #e5e5e5;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17px;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+        span {
+          position: absolute;
+          right: 8px;
+          top: 8px;
+          color: #e5e5e5;
+        }
+      }
+      button {
+        background-color: #feaf00;
+        border: none;
+        border-radius: 4px;
+        width: 199px;
+        height: 44px;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17px;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .addUpdateModal {
+    width: 1250px;
+    overflow: hidden;
+    background-color: yellow;
+  }
+
+  .titles {
+    display: flex;
+    color: #acacac;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    margin-bottom: 6px;
+    padding: 1.5rem 2rem 0 2rem;
+
+    p {
+      flex: 3;
+    }
+    .titlesName {
+      flex: 3;
+      margin-left: 65px;
+      p {
+        padding-left: 3rem;
+      }
+    }
+
+    .titleIcon {
+      flex: 1;
+    }
+  }
+
   .list {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: auto;
-    height: calc(100vh - 10rem);
+    gap: 1rem;
+    height: calc(70vh);
+    overflow-y: auto;
     padding: 1rem 2rem;
+
     .student {
       display: flex;
       justify-content: space-between;
@@ -52,6 +147,7 @@
     justify-content: flex-end;
     gap: 0.5rem;
     padding-right: 2rem;
+    margin-top: 0.5rem;
 
     p {
       //styleName: Reg 14 (0.3 px);
@@ -68,6 +164,7 @@
       button {
         background: none;
         border: none;
+        width: 24px;
       }
     }
   }

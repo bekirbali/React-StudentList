@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "../styles/login.module.scss";
 
 import { AuthContext } from "../context/AuthContext";
@@ -14,6 +14,7 @@ const LoginForm = () => {
     setAuth(true);
     console.log(auth);
     navigate("/dashboard");
+    localStorage.setItem("auth", auth);
   };
   return (
     <form onSubmit={handleSubmit} className={styles.form}>

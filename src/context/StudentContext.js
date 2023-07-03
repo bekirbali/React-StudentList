@@ -6,29 +6,23 @@ export const StudentContext = createContext();
 const StudentContextProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
+  const [addUpdate, setAddUpdate] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getStudents = async (skip, rows) => {
     const { data } = await axios.get(
       `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
     );
-    setStudents(data.users);
+    // setStudents(data.users);
     const allStudentsList = await axios.get(
       "https://dummyjson.com/users?limit=0"
     );
     setAllStudents(allStudentsList.data.users);
-    console.log(allStudents);
+    setStudents(allStudents.slice(skip, skip + rows));
   };
 
-  const newStudent = {
-    name: "",
-    email: "",
-    phone: "",
-    website: "",
-    company: "",
-  };
-
-  const addStudent = () => {
-    setStudents((todo) => [newStudent, ...todo]);
+  const addStudent = (newStudent) => {
+    setAllStudents((todo) => [newStudent, ...todo]);
   };
 
   const updateStudent = () => {};
@@ -42,7 +36,11 @@ const StudentContextProvider = ({ children }) => {
     students,
     getStudents,
     allStudents,
+    addUpdate,
+    setAddUpdate,
+    setStudents,
   };
+
   return (
     <StudentContext.Provider value={values}>{children}</StudentContext.Provider>
   );
