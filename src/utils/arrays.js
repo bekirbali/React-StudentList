@@ -47,7 +47,7 @@ export const homeListItems = [
 export const sidebarListItems = [
   {
     name: "Home",
-    path: "home",
+    path: "",
     icon: <AiOutlineHome size={20} />,
   },
   {

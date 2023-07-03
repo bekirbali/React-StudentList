@@ -44,6 +44,7 @@ const Sidebar = () => {
               key={item.name}
               onClick={() => clickHandler(item)}
               to={item.path}
+              end
               style={({ isActive }) => {
                 return {
                   backgroundColor: isActive && "#feaf00",

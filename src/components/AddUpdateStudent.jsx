@@ -1,23 +1,33 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StudentContext } from "../context/StudentContext";
 import styles from "../styles/addUpdateStudent.module.scss";
 
 const AddUpdateStudent = () => {
   const { addUpdate, setAddUpdate, addStudent } = useContext(StudentContext);
+
   const newStudent = {
-    name: "",
+    firstName: "",
     email: "",
     phone: "",
-    website: "",
+    domain: "",
     company: "",
     image: "",
   };
 
+  const [students, setStudents] = useState([]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     setAddUpdate("");
-    addStudent(newStudent);
+    // addStudent(newStudent);
+    setStudents((student) => [...student, newStudent]);
   };
+
+  useEffect(() => {
+    const data = localStorage.getItem("students");
+    const parsedData = JSON.parse(data);
+    setStudents(parsedData);
+  }, []);
 
   return (
     <div className={styles.addUpdateModal}>
