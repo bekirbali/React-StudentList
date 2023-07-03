@@ -27,6 +27,8 @@ const Students = () => {
   const [perPageFirst, setPerPageFirst] = useState(1);
   const [perPageLast, setPerPageLast] = useState(6);
 
+  const [newStudents, setNewStudents] = useState([]);
+
   const selectChangeHandler = (e) => {
     setRows(Number(e.target.value));
     setPerPageFirst(1);
@@ -42,6 +44,7 @@ const Students = () => {
     }
     setPerPageFirst(perPageFirst + rows);
     setPerPageLast(perPageLast + rows);
+    console.log(newStudents);
   };
 
   const backwardHandler = () => {
@@ -58,8 +61,9 @@ const Students = () => {
   };
 
   useEffect(() => {
-    getStudents(skip, rows);
-
+    // getStudents(skip, rows);
+    const data = localStorage.getItem("students");
+    setNewStudents(JSON.parse(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, rows]);
   return (
@@ -73,7 +77,7 @@ const Students = () => {
               <AiOutlineSearch size={18} />
             </span>
           </div>
-          <button onClick={() => setAddUpdate("add")}>Add Student</button>
+          <button onClick={() => setAddUpdate("add")}>Add New Student</button>
         </form>
       </div>{" "}
       <div className={styles.addUpdateModal}>
@@ -90,7 +94,7 @@ const Students = () => {
         <div className={styles.titleIcon}></div>
       </div>
       <div className={styles.list}>
-        {students?.map((student) => {
+        {newStudents?.map((student) => {
           return (
             <div key={student.id} className={styles.student}>
               <img src={student.image} alt="" />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const StudentContext = createContext();
 
@@ -28,6 +28,10 @@ const StudentContextProvider = ({ children }) => {
   const updateStudent = () => {};
 
   const deleteStudent = () => {};
+
+  useEffect(() => {
+    localStorage.setItem("students", JSON.stringify(allStudents));
+  }, [allStudents]);
 
   const values = {
     addStudent,
