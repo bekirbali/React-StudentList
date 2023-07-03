@@ -5,13 +5,18 @@ export const StudentContext = createContext();
 
 const StudentContextProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
+  const [allStudents, setAllStudents] = useState([]);
 
   const getStudents = async (skip, rows) => {
     const { data } = await axios.get(
       `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
     );
     setStudents(data.users);
-    console.log(data.users);
+    const allStudentsList = await axios.get(
+      "https://dummyjson.com/users?limit=0"
+    );
+    setAllStudents(allStudentsList.data.users);
+    console.log(allStudents);
   };
 
   const newStudent = {
@@ -36,6 +41,7 @@ const StudentContextProvider = ({ children }) => {
     deleteStudent,
     students,
     getStudents,
+    allStudents,
   };
   return (
     <StudentContext.Provider value={values}>{children}</StudentContext.Provider>
