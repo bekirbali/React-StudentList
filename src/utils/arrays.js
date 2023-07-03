@@ -47,12 +47,12 @@ export const homeListItems = [
 export const sidebarListItems = [
   {
     name: "Home",
-    path: "",
+    path: "home",
     icon: <AiOutlineHome size={20} />,
   },
   {
     name: "Course",
-    path: "",
+    path: "course",
     icon: <BsBookmark size={20} />,
   },
   {
@@ -62,17 +62,17 @@ export const sidebarListItems = [
   },
   {
     name: "Payment",
-    path: "",
+    path: "payment",
     icon: <BsCurrencyDollar size={20} style={{ border: "1px solid black" }} />,
   },
   {
     name: "Report",
-    path: "",
+    path: "report",
     icon: <RiFileChartLine size={20} />,
   },
   {
     name: "Settings",
-    path: "",
+    path: "settings",
     icon: <GiSettingsKnobs size={20} style={{ border: "1px solid black" }} />,
   },
 ];

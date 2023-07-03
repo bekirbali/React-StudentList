@@ -4,10 +4,23 @@ import styles from "../styles/students.module.scss";
 
 import { BsPencil } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
+
+import {
+  MdOutlineArrowBackIosNew,
+  MdOutlineArrowForwardIos,
+} from "react-icons/md";
+import AddUpdateStudent from "../components/AddUpdateStudent";
 
 const Students = () => {
-  const { students, allStudents, getStudents } = useContext(StudentContext);
+  const {
+    students,
+    setStudents,
+    allStudents,
+    getStudents,
+    addUpdate,
+    setAddUpdate,
+  } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
   const [rows, setRows] = useState(6);
@@ -40,13 +53,42 @@ const Students = () => {
     }
   };
 
+  const deleteHandler = (id, name) => {
+    console.log(`${name} deleted`);
+  };
+
   useEffect(() => {
     getStudents(skip, rows);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, rows]);
   return (
     <div className={styles.students}>
-      <h1>Students List</h1>
+      <div className={styles.topBar}>
+        <h1>Students List</h1>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className={styles.search}>
+            <input type="text" placeholder="Search..." />
+            <span>
+              <AiOutlineSearch size={18} />
+            </span>
+          </div>
+          <button onClick={() => setAddUpdate("add")}>Add Student</button>
+        </form>
+      </div>{" "}
+      <div className={styles.addUpdateModal}>
+        {addUpdate && <AddUpdateStudent />}
+      </div>
+      <div className={styles.titles}>
+        <div className={styles.titlesName}>
+          <p>Name</p>
+        </div>
+        <p>Email</p>
+        <p>Phone</p>
+        <p>Domain</p>
+        <p>Company</p>
+        <div className={styles.titleIcon}></div>
+      </div>
       <div className={styles.list}>
         {students?.map((student) => {
           return (
@@ -61,7 +103,12 @@ const Students = () => {
               <p>{student.company.name}</p>
               <p className={styles.icon}>
                 {<BsPencil size={19} />}
-                {<FiTrash size={18} />}
+                {
+                  <FiTrash
+                    size={18}
+                    onClick={() => deleteHandler(student.id, student.firstName)}
+                  />
+                }
               </p>
             </div>
           );
@@ -81,10 +128,10 @@ const Students = () => {
         </p>
         <div className={styles.buttons}>
           <button>
-            <AiOutlineArrowLeft onClick={backwardHandler} />
+            <MdOutlineArrowBackIosNew onClick={backwardHandler} />
           </button>
           <button>
-            <AiOutlineArrowRight onClick={forwardHandler} />
+            <MdOutlineArrowForwardIos onClick={forwardHandler} />
           </button>
         </div>
       </div>

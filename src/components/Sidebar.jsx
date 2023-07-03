@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { sidebarListItems } from "../utils/arrays";
 import { FiLogOut } from "react-icons/fi";
@@ -12,10 +12,21 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [active, setActive] = useState("Home");
 
-  const clickHandler = (item) => {
-    navigate(item.path);
-    setActive(item.name);
+  const clickHandler = ({ path, name }) => {
+    // navigate(path);
+    // setActive(name);
+    localStorage.setItem("active", name);
   };
+
+  const logoutHandler = () => {
+    navigate("/");
+    localStorage.removeItem("auth");
+    localStorage.removeItem("active");
+  };
+
+  // useEffect(() => {
+  //   setActive(localStorage.getItem("active" || active));
+  // }, []);
 
   return (
     <nav className={styles.sidebar}>
@@ -28,17 +39,25 @@ const Sidebar = () => {
       <ul className={styles.menu}>
         {sidebarListItems.map((item) => {
           return (
-            <li
+            <NavLink
+              className={styles.navLink}
               key={item.name}
               onClick={() => clickHandler(item)}
-              className={active === `${item.name}` ? styles.active : ""}
+              to={item.path}
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive && "#feaf00",
+                };
+              }}
             >
-              {item.icon} <span className={styles.names}>{item.name}</span>
-            </li>
+              <li>
+                {item.icon} <span className={styles.names}>{item.name}</span>
+              </li>
+            </NavLink>
           );
         })}
 
-        <li className={styles.logout} onClick={() => navigate("/")}>
+        <li className={styles.logout} onClick={logoutHandler}>
           Logout{" "}
           <span>
             <FiLogOut size={18} />

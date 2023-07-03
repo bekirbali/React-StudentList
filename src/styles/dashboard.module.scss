@@ -1,5 +1,9 @@
 .dashboard {
   display: flex;
+  height: 100vh;
+  .left {
+    background-color: #f2eae1;
+  }
   .right {
     width: 100%;
   }
