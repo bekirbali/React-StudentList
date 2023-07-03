@@ -7,15 +7,42 @@ import { FiTrash } from "react-icons/fi";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 const Students = () => {
-  const { students, getStudents } = useContext(StudentContext);
+  const { students, allStudents, getStudents } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
   const [rows, setRows] = useState(6);
-  const [perPage, setPerPage] = useState(1);
+  const [perPageFirst, setPerPageFirst] = useState(1);
+  const [perPageLast, setPerPageLast] = useState(6);
+
+  const selectChangeHandler = (e) => {
+    setRows(Number(e.target.value));
+    setPerPageFirst(1);
+    setPerPageLast(Number(e.target.value));
+  };
+
+  const forwardHandler = () => {
+    setSkip(skip + 6);
+    if (perPageLast >= allStudents.length) {
+      setPerPageLast(allStudents.length);
+      setPerPageFirst(allStudents.length - rows + 1);
+      return;
+    }
+    setPerPageFirst(perPageFirst + rows);
+    setPerPageLast(perPageLast + rows);
+  };
+
+  const backwardHandler = () => {
+    if (skip) {
+      setSkip(skip - 6);
+      setPerPageFirst(perPageFirst - rows);
+      setPerPageLast(perPageLast - rows);
+      return;
+    }
+  };
 
   useEffect(() => {
     getStudents(skip, rows);
-    console.log(students);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, rows]);
   return (
     <div className={styles.students}>
@@ -43,16 +70,22 @@ const Students = () => {
       <div className={styles.row}>
         <p>
           Rows per page:{" "}
-          <select onChange={(e) => setRows(e.target.value)}>
+          <select onChange={(e) => selectChangeHandler(e)}>
             <option value="6">6</option>
             <option value="12">12</option>
             <option value="18">18</option>
           </select>
         </p>
-
+        <p>
+          {perPageFirst} - {perPageLast} of {allStudents.length}
+        </p>
         <div className={styles.buttons}>
-          <AiOutlineArrowLeft onClick={() => setSkip(skip && skip - 6)} />
-          <AiOutlineArrowRight onClick={() => setSkip(skip + 6)} />
+          <button>
+            <AiOutlineArrowLeft onClick={backwardHandler} />
+          </button>
+          <button>
+            <AiOutlineArrowRight onClick={forwardHandler} />
+          </button>
         </div>
       </div>
     </div>

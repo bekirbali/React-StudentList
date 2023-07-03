@@ -3,7 +3,7 @@
   .list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    justify-content: space-between;
     overflow: auto;
     height: calc(100vh - 10rem);
     padding: 1rem 2rem;
@@ -62,6 +62,13 @@
       letter-spacing: 0.30000001192092896px;
       text-align: left;
       color: #9fa2b4;
+    }
+
+    .buttons {
+      button {
+        background: none;
+        border: none;
+      }
     }
   }
 }
