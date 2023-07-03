@@ -36,7 +36,7 @@
         font-weight: 700;
         color: black;
         span {
-          font-size: 18px;
+          font-size: 36px;
         }
       }
     }
@@ -55,8 +55,11 @@
   .payment {
     background-color: #fefbec;
   }
+  .report {
+    background-color: #fef6fb;
+  }
 
-  .users {
+  .settings {
     background: linear-gradient(110.42deg, #feaf00 18.27%, #f8d442 91.84%);
     color: white;
     .icons {
