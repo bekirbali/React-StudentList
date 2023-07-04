@@ -24,6 +24,8 @@ const Students = () => {
     setAddUpdate,
     deleteStudent,
     loading,
+    search,
+    setSearch,
   } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
@@ -91,6 +93,13 @@ const Students = () => {
     toastSuccessNotify(`${name} deleted`);
   };
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setSkip(0);
+    setPerPageFirst(1);
+    setPerPageLast(rows);
+  };
+
   useEffect(() => {
     getStudents(skip, rows);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -99,16 +108,23 @@ const Students = () => {
     <div className={styles.students}>
       <div className={styles.topBar}>
         <h1>Students List</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className={styles.search}>
-            <input type="text" placeholder="Search..." />
-            <span>
-              <AiOutlineSearch size={18} />
-            </span>
-          </div>
+        <div className={styles.rightSideElements}>
+          <form onSubmit={searchHandler}>
+            <div className={styles.search}>
+              <input
+                type="text"
+                placeholder="Search..."
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+              <span>
+                <AiOutlineSearch size={18} />
+              </span>
+            </div>
+          </form>
           <button onClick={() => setAddUpdate("add")}>Add New Student</button>
-        </form>
-      </div>{" "}
+        </div>
+      </div>
       <div className={styles.addUpdateModal}>
         {addUpdate && (
           <AddUpdateStudent
@@ -142,7 +158,10 @@ const Students = () => {
       </div>
       {loading && (
         <div className={styles.loading}>
-          <img src={loadingGif} alt="" />
+          <img
+            src={loadingGif}
+            alt="https://dribbble.com/shots/4275501-Loading-Screen-Animation-Hourglass"
+          />
         </div>
       )}
       {!loading && (
@@ -179,7 +198,7 @@ const Students = () => {
             })}
           </div>
           <div className={styles.row}>
-            <p>
+            <p className={styles.perPage}>
               Rows per page:{" "}
               <select onChange={(e) => selectChangeHandler(e)}>
                 <option value="6">6</option>

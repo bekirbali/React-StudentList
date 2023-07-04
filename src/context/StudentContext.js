@@ -22,9 +22,7 @@ const StudentContextProvider = ({ children }) => {
         "https://dummyjson.com/users?limit=0"
       );
       setAllStudents(allStudentsList.data.users);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      setLoading(false);
     } catch (error) {
       toastErrorNotify(`Getting data failed, ${error}`);
     }
