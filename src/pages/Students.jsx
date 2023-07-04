@@ -13,6 +13,8 @@ import {
 import AddUpdateStudent from "../components/AddUpdateStudent";
 import { toastSuccessNotify } from "../utils/Toastify";
 
+import loadingGif from "../assets/loading.gif";
+
 const Students = () => {
   const {
     students,
@@ -138,7 +140,11 @@ const Students = () => {
         <p>Company</p>
         <div className={styles.titleIcon}></div>
       </div>
-      {loading && <h1>Loading...</h1>}
+      {loading && (
+        <div className={styles.loading}>
+          <img src={loadingGif} alt="" />
+        </div>
+      )}
       {!loading && (
         <>
           <div className={styles.list}>

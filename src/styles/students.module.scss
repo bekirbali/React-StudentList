@@ -168,4 +168,11 @@
       }
     }
   }
+  .loading {
+    height: calc(70vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+  }
 }
