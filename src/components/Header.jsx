@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../styles/header.module.scss";
 
 import { TbCircleCaretLeft } from "react-icons/tb";
-import { AiOutlineBell } from "react-icons/ai";
 import { BsBell, BsBellSlash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
