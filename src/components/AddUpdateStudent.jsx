@@ -34,7 +34,6 @@ const AddUpdateStudent = ({
     setCompany("");
     setImage("");
   };
-  console.log(firstName);
 
   const updateHandler = (e) => {
     e.preventDefault();
@@ -47,6 +46,7 @@ const AddUpdateStudent = ({
     setCompany("");
     setImage("");
   };
+  console.log(id);
 
   const closeModalHandler = () => {
     setAddUpdate("");

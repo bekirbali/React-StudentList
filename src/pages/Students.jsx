@@ -123,6 +123,7 @@ const Students = () => {
             setImage={setImage}
             studentInfo={studentInfo}
             setStudentInfo={setStudentInfo}
+            id={id}
           />
         )}
       </div>
