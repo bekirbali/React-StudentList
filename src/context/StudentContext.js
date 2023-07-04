@@ -10,14 +10,18 @@ const StudentContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const getStudents = async (skip, rows) => {
-    const { data } = await axios.get(
-      `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
-    );
-    setStudents(data.users);
-    const allStudentsList = await axios.get(
-      "https://dummyjson.com/users?limit=0"
-    );
-    setAllStudents(allStudentsList.data.users);
+    try {
+      const { data } = await axios.get(
+        `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
+      );
+      setStudents(data.users);
+      const allStudentsList = await axios.get(
+        "https://dummyjson.com/users?limit=0"
+      );
+      setAllStudents(allStudentsList.data.users);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const addStudent = async (newStudent) => {
@@ -44,7 +48,7 @@ const StudentContextProvider = ({ children }) => {
     }
   };
 
-  const deleteStudent = async (id) => {
+  const deleteStudent = async (id, name) => {
     try {
       await axios.delete(`https://dummyjson.com/users/${id}`);
     } catch (error) {
@@ -66,6 +70,8 @@ const StudentContextProvider = ({ children }) => {
     addUpdate,
     setAddUpdate,
     setStudents,
+    loading,
+    setLoading,
   };
 
   return (

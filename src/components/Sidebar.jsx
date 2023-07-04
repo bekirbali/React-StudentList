@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { sidebarListItems } from "../utils/arrays";
+import { sidebarListItems } from "../utils/Arrays";
 import { FiLogOut } from "react-icons/fi";
 
-import avatar from "../assets/avatar.jpg";
+import avatar from "../assets/avatar.png";
 
 import styles from "../styles/sidebar.module.scss";
 

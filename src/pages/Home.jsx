@@ -1,5 +1,5 @@
 import styles from "../styles/home.module.scss";
-import { homeListItems } from "../utils/arrays";
+import { homeListItems } from "../utils/Arrays";
 
 const Home = () => {
   return (

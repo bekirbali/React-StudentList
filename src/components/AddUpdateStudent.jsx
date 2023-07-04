@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { StudentContext } from "../context/StudentContext";
 import styles from "../styles/addUpdateStudent.module.scss";
+
+import { ImCancelCircle } from "react-icons/im";
 
 const AddUpdateStudent = ({
   id,
@@ -34,7 +36,6 @@ const AddUpdateStudent = ({
     setCompany("");
     setImage("");
   };
-  console.log(firstName);
 
   const updateHandler = (e) => {
     e.preventDefault();
@@ -47,6 +48,7 @@ const AddUpdateStudent = ({
     setCompany("");
     setImage("");
   };
+  console.log(id);
 
   const closeModalHandler = () => {
     setAddUpdate("");
@@ -63,98 +65,114 @@ const AddUpdateStudent = ({
       <div className={styles.modal}>
         <div className={styles.outside} onClick={closeModalHandler}></div>
         {addUpdate === "add" ? (
-          <form onSubmit={addHandler}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Enter your phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            <input
-              type="text"
-              name="domain"
-              placeholder="Enter your domain"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
-            />
-            <input
-              type="text"
-              name="company"
-              placeholder="Enter your company name"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-            />
+          <>
+            <form onSubmit={addHandler}>
+              <ImCancelCircle
+                size={20}
+                className={styles.cancel}
+                onClick={addHandler}
+              />
+              <h1>Add new students </h1>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Enter your phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <input
+                type="text"
+                name="domain"
+                placeholder="Enter your domain"
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+              />
+              <input
+                type="text"
+                name="company"
+                placeholder="Enter your company name"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+              />
 
-            <button type="submit">Add Student</button>
-          </form>
+              <button type="submit">Add Student</button>
+            </form>
+          </>
         ) : (
-          <form onSubmit={updateHandler}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Enter your phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            <input
-              type="text"
-              name="domain"
-              placeholder="Enter your domain"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
-            />
-            <input
-              type="text"
-              name="company"
-              placeholder="Enter your company name"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-            />
-            <button type="submit">Update Student</button>
-          </form>
+          <>
+            <form onSubmit={updateHandler}>
+              <ImCancelCircle
+                size={20}
+                className={styles.cancel}
+                onClick={addHandler}
+              />
+              <h1>Update {firstName}</h1>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Enter your phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <input
+                type="text"
+                name="domain"
+                placeholder="Enter your domain"
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+              />
+              <input
+                type="text"
+                name="company"
+                placeholder="Enter your company name"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+              />
+              <button type="submit">Update "{firstName}"</button>
+            </form>
+          </>
         )}
       </div>
     </div>

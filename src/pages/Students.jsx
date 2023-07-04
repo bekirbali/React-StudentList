@@ -5,12 +5,13 @@ import styles from "../styles/students.module.scss";
 import { BsPencil } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
 import { AiOutlineSearch } from "react-icons/ai";
-
 import {
   MdOutlineArrowBackIosNew,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
+
 import AddUpdateStudent from "../components/AddUpdateStudent";
+import { toastSuccessNotify } from "../utils/Toastify";
 
 const Students = () => {
   const {
@@ -20,6 +21,7 @@ const Students = () => {
     addUpdate,
     setAddUpdate,
     deleteStudent,
+    loading,
   } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
@@ -86,6 +88,7 @@ const Students = () => {
   const deleteHandler = (id, name) => {
     console.log(`${name} deleted`);
     deleteStudent(id);
+    toastSuccessNotify(`${name} deleted`);
   };
 
   useEffect(() => {
@@ -123,6 +126,7 @@ const Students = () => {
             setImage={setImage}
             studentInfo={studentInfo}
             setStudentInfo={setStudentInfo}
+            id={id}
           />
         )}
       </div>
@@ -136,53 +140,63 @@ const Students = () => {
         <p>Company</p>
         <div className={styles.titleIcon}></div>
       </div>
-      <div className={styles.list}>
-        {students?.map((student) => {
-          const { id, firstName, email, phone, domain, company } = student;
-          return (
-            <div key={student.id} className={styles.student}>
-              <img src={student.image} alt="" />
-              <div className={styles.name}>
-                <p>{firstName}</p>
-              </div>
-              <p>{email}</p>
-              <p>{phone}</p>
-              <p>{domain}</p>
-              <p>{company.name}</p>
-              <p className={styles.icon}>
-                {<BsPencil size={19} onClick={() => updateHandler(student)} />}
-                {
-                  <FiTrash
-                    size={18}
-                    onClick={() => deleteHandler(id, firstName)}
-                  />
-                }
-              </p>
+      {loading && <h1>Loading...</h1>}
+      {!loading && (
+        <>
+          <div className={styles.list}>
+            {students?.map((student) => {
+              const { id, firstName, email, phone, domain, company } = student;
+              return (
+                <div key={student.id} className={styles.student}>
+                  <img src={student.image} alt="" />
+                  <div className={styles.name}>
+                    <p>{firstName}</p>
+                  </div>
+                  <p>{email}</p>
+                  <p>{phone}</p>
+                  <p>{domain}</p>
+                  <p>{company.name}</p>
+                  <p className={styles.icon}>
+                    {
+                      <BsPencil
+                        size={19}
+                        onClick={() => updateHandler(student)}
+                      />
+                    }
+                    {
+                      <FiTrash
+                        size={18}
+                        onClick={() => deleteHandler(id, firstName)}
+                      />
+                    }
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div className={styles.row}>
+            <p>
+              Rows per page:{" "}
+              <select onChange={(e) => selectChangeHandler(e)}>
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="18">18</option>
+              </select>
+            </p>
+            <p>
+              {perPageFirst} - {perPageLast} of {allStudents.length}
+            </p>
+            <div className={styles.buttons}>
+              <button>
+                <MdOutlineArrowBackIosNew onClick={backwardHandler} />
+              </button>
+              <button>
+                <MdOutlineArrowForwardIos onClick={forwardHandler} />
+              </button>
             </div>
-          );
-        })}
-      </div>
-      <div className={styles.row}>
-        <p>
-          Rows per page:{" "}
-          <select onChange={(e) => selectChangeHandler(e)}>
-            <option value="6">6</option>
-            <option value="12">12</option>
-            <option value="18">18</option>
-          </select>
-        </p>
-        <p>
-          {perPageFirst} - {perPageLast} of {allStudents.length}
-        </p>
-        <div className={styles.buttons}>
-          <button>
-            <MdOutlineArrowBackIosNew onClick={backwardHandler} />
-          </button>
-          <button>
-            <MdOutlineArrowForwardIos onClick={forwardHandler} />
-          </button>
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
