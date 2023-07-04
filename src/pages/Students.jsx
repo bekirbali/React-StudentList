@@ -33,6 +33,7 @@ const Students = () => {
   const [phone, setPhone] = useState("");
   const [domain, setDomain] = useState("");
   const [company, setCompany] = useState("");
+  const [id, setId] = useState("");
 
   const [studentInfo, setStudentInfo] = useState({
     firstName: firstName,
@@ -70,8 +71,15 @@ const Students = () => {
   };
 
   const updateHandler = (student) => {
-    setFirstName(student.firstName);
+    const { id, firstName, email, phone, domain, company, image } = student;
+    setFirstName(firstName);
+    setEmail(email);
+    setPhone(phone);
+    setDomain(domain);
+    setCompany(company.name);
     setAddUpdate("update");
+    setImage(image);
+    setId(id);
     console.log(student);
   };
 
@@ -105,7 +113,8 @@ const Students = () => {
             setFirstName={setFirstName}
             email={email}
             setEmail={setEmail}
-            domain={setDomain}
+            domain={domain}
+            setDomain={setDomain}
             phone={phone}
             setPhone={setPhone}
             company={company}
