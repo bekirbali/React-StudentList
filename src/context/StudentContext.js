@@ -13,21 +13,44 @@ const StudentContextProvider = ({ children }) => {
     const { data } = await axios.get(
       `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
     );
-    // setStudents(data.users);
+    setStudents(data.users);
     const allStudentsList = await axios.get(
       "https://dummyjson.com/users?limit=0"
     );
     setAllStudents(allStudentsList.data.users);
-    setStudents(allStudents.slice(skip, skip + rows));
   };
 
-  const addStudent = (newStudent) => {
-    setAllStudents((todo) => [newStudent, ...todo]);
+  const addStudent = async (newStudent) => {
+    try {
+      const headers = { "Content-Type": "application/json" };
+      await axios.post(`https://dummyjson.com/users/add`, newStudent, {
+        headers,
+      });
+      console.log("added");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const updateStudent = () => {};
+  const updateStudent = async (id, update) => {
+    try {
+      const headers = { "Content-Type": "application/json" };
+      await axios.put(`https://dummyjson.com/users/${id}`, update, {
+        headers,
+      });
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const deleteStudent = () => {};
+  const deleteStudent = async (id) => {
+    try {
+      await axios.delete(`https://dummyjson.com/users/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem("students", JSON.stringify(allStudents));
