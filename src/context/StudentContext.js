@@ -26,7 +26,7 @@ const StudentContextProvider = ({ children }) => {
       await axios.post(`https://dummyjson.com/users/add`, newStudent, {
         headers,
       });
-      console.log("added");
+      console.log("added", newStudent.firstName);
     } catch (error) {
       console.log(error);
     }

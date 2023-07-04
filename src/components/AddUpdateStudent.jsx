@@ -3,18 +3,21 @@ import { StudentContext } from "../context/StudentContext";
 import styles from "../styles/addUpdateStudent.module.scss";
 
 const AddUpdateStudent = ({
+  id,
   firstName,
-  setFirstName,
   email,
-  setEmail,
   domain,
-  setDomain,
   phone,
-  setPhone,
   company,
-  setCompany,
   image,
+  studentInfo,
+  setEmail,
+  setDomain,
+  setFirstName,
+  setPhone,
+  setCompany,
   setImage,
+  setStudentInfo,
 }) => {
   const { addUpdate, setAddUpdate, addStudent, updateStudent } =
     useContext(StudentContext);
@@ -22,19 +25,43 @@ const AddUpdateStudent = ({
   const addHandler = (e) => {
     e.preventDefault();
     setAddUpdate("");
-    // addStudent(newStudent);
+    addStudent(studentInfo);
+    console.log(studentInfo.firstName);
+    setEmail("");
+    setDomain("");
+    setFirstName("");
+    setPhone("");
+    setCompany("");
+    setImage("");
   };
+  console.log(firstName);
 
   const updateHandler = (e) => {
     e.preventDefault();
     setAddUpdate("");
-    // updateStudent(studentInfo);
+    updateStudent(id, studentInfo);
+    setEmail("");
+    setDomain("");
+    setFirstName("");
+    setPhone("");
+    setCompany("");
+    setImage("");
+  };
+
+  const closeModalHandler = () => {
+    setAddUpdate("");
+    setEmail("");
+    setDomain("");
+    setFirstName("");
+    setPhone("");
+    setCompany("");
+    setImage("");
   };
 
   return (
     <div className={styles.addUpdateModal}>
       <div className={styles.modal}>
-        <div className={styles.outside} onClick={() => setAddUpdate("")}></div>
+        <div className={styles.outside} onClick={closeModalHandler}></div>
         {addUpdate === "add" ? (
           <form onSubmit={addHandler}>
             <input
@@ -59,7 +86,7 @@ const AddUpdateStudent = ({
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              type="number"
+              type="text"
               name="phone"
               placeholder="Enter your phone"
               value={phone}
@@ -106,7 +133,7 @@ const AddUpdateStudent = ({
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              type="number"
+              type="text"
               name="phone"
               placeholder="Enter your phone"
               value={phone}
