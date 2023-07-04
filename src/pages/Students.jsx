@@ -82,11 +82,9 @@ const Students = () => {
     setAddUpdate("update");
     setImage(image);
     setId(id);
-    console.log(student);
   };
 
   const deleteHandler = (id, name) => {
-    console.log(`${name} deleted`);
     deleteStudent(id);
     toastSuccessNotify(`${name} deleted`);
   };

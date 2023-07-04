@@ -28,7 +28,6 @@ const AddUpdateStudent = ({
     e.preventDefault();
     setAddUpdate("");
     addStudent(studentInfo);
-    console.log(studentInfo.firstName);
     setEmail("");
     setDomain("");
     setFirstName("");
@@ -48,7 +47,6 @@ const AddUpdateStudent = ({
     setCompany("");
     setImage("");
   };
-  console.log(id);
 
   const closeModalHandler = () => {
     setAddUpdate("");
