@@ -15,11 +15,11 @@ import AddUpdateStudent from "../components/AddUpdateStudent";
 const Students = () => {
   const {
     students,
-    setStudents,
     allStudents,
     getStudents,
     addUpdate,
     setAddUpdate,
+    deleteStudent,
   } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
@@ -27,7 +27,21 @@ const Students = () => {
   const [perPageFirst, setPerPageFirst] = useState(1);
   const [perPageLast, setPerPageLast] = useState(6);
 
-  const [newStudents, setNewStudents] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [domain, setDomain] = useState("");
+  const [company, setCompany] = useState("");
+
+  const [studentInfo, setStudentInfo] = useState({
+    firstName: firstName,
+    email: email,
+    phone: phone,
+    domain: domain,
+    company: { name: company },
+    image: image,
+  });
 
   const selectChangeHandler = (e) => {
     setRows(Number(e.target.value));
@@ -44,7 +58,6 @@ const Students = () => {
     }
     setPerPageFirst(perPageFirst + rows);
     setPerPageLast(perPageLast + rows);
-    console.log(newStudents);
   };
 
   const backwardHandler = () => {
@@ -56,14 +69,19 @@ const Students = () => {
     }
   };
 
+  const updateHandler = (student) => {
+    setFirstName(student.firstName);
+    setAddUpdate("update");
+    console.log(student);
+  };
+
   const deleteHandler = (id, name) => {
     console.log(`${name} deleted`);
+    deleteStudent(id);
   };
 
   useEffect(() => {
-    // getStudents(skip, rows);
-    const data = localStorage.getItem("students");
-    setNewStudents(JSON.parse(data));
+    getStudents(skip, rows);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, rows]);
   return (
@@ -81,7 +99,23 @@ const Students = () => {
         </form>
       </div>{" "}
       <div className={styles.addUpdateModal}>
-        {addUpdate && <AddUpdateStudent />}
+        {addUpdate && (
+          <AddUpdateStudent
+            firstName={firstName}
+            setFirstName={setFirstName}
+            email={email}
+            setEmail={setEmail}
+            domain={setDomain}
+            phone={phone}
+            setPhone={setPhone}
+            company={company}
+            setCompany={setCompany}
+            image={image}
+            setImage={setImage}
+            studentInfo={studentInfo}
+            setStudentInfo={setStudentInfo}
+          />
+        )}
       </div>
       <div className={styles.titles}>
         <div className={styles.titlesName}>
@@ -94,23 +128,24 @@ const Students = () => {
         <div className={styles.titleIcon}></div>
       </div>
       <div className={styles.list}>
-        {newStudents?.map((student) => {
+        {students?.map((student) => {
+          const { id, firstName, email, phone, domain, company } = student;
           return (
             <div key={student.id} className={styles.student}>
               <img src={student.image} alt="" />
               <div className={styles.name}>
-                <p>{student?.firstName}</p>
+                <p>{firstName}</p>
               </div>
-              <p>{student.email}</p>
-              <p>{student.phone}</p>
-              <p>{student.domain}</p>
-              <p>{student.company.name}</p>
+              <p>{email}</p>
+              <p>{phone}</p>
+              <p>{domain}</p>
+              <p>{company.name}</p>
               <p className={styles.icon}>
-                {<BsPencil size={19} />}
+                {<BsPencil size={19} onClick={() => updateHandler(student)} />}
                 {
                   <FiTrash
                     size={18}
-                    onClick={() => deleteHandler(student.id, student.firstName)}
+                    onClick={() => deleteHandler(id, firstName)}
                   />
                 }
               </p>
