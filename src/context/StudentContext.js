@@ -42,7 +42,6 @@ const StudentContextProvider = ({ children }) => {
       await axios.put(`https://dummyjson.com/users/${id}`, update, {
         headers,
       });
-      console.log("updated");
     } catch (error) {
       toastErrorNotify(`Updating user failed, ${error}`);
     }

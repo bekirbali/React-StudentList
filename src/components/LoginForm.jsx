@@ -12,7 +12,6 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setAuth(true);
-    console.log(auth);
     navigate("/dashboard");
     localStorage.setItem("auth", auth);
   };
