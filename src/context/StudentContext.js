@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { toastErrorNotify } from "../utils/Toastify";
 
 export const StudentContext = createContext();
 
@@ -20,7 +21,7 @@ const StudentContextProvider = ({ children }) => {
       );
       setAllStudents(allStudentsList.data.users);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(`Getting data failed, ${error}`);
     }
   };
 
@@ -30,9 +31,8 @@ const StudentContextProvider = ({ children }) => {
       await axios.post(`https://dummyjson.com/users/add`, newStudent, {
         headers,
       });
-      console.log("added", newStudent.firstName);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(`Adding user failed, ${error}`);
     }
   };
 
@@ -44,7 +44,7 @@ const StudentContextProvider = ({ children }) => {
       });
       console.log("updated");
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(`Updating user failed, ${error}`);
     }
   };
 
@@ -52,13 +52,9 @@ const StudentContextProvider = ({ children }) => {
     try {
       await axios.delete(`https://dummyjson.com/users/${id}`);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(`Deleting user failed, ${error}`);
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("students", JSON.stringify(allStudents));
-  }, [allStudents]);
 
   const values = {
     addStudent,
