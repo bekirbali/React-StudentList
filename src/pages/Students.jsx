@@ -10,6 +10,12 @@ import TopBar from "../components/TopBar";
 import StudentsList from "../components/StudentsList";
 import SearchResultsList from "../components/SearchResultsList";
 
+import {
+  MdOutlineArrowBackIosNew,
+  MdOutlineArrowForwardIos,
+} from "react-icons/md";
+import { ImVolumeHigh } from "react-icons/im";
+
 const Students = () => {
   const {
     students,
@@ -49,12 +55,13 @@ const Students = () => {
 
   const selectChangeHandler = (e) => {
     setRows(Number(e.target.value));
+    setSkip(0);
     setPerPageFirst(1);
     setPerPageLast(Number(e.target.value));
   };
 
   const forwardHandler = () => {
-    setSkip(skip + 6);
+    setSkip(skip + rows);
     if (perPageLast >= allStudents.length) {
       setPerPageLast(allStudents.length);
       setPerPageFirst(allStudents.length - rows + 1);
@@ -67,6 +74,11 @@ const Students = () => {
   const backwardHandler = () => {
     if (skip) {
       setSkip(skip - 6);
+      if (perPageFirst < 6) {
+        setPerPageFirst(1);
+        setPerPageLast(rows);
+        return;
+      }
       setPerPageFirst(perPageFirst - rows);
       setPerPageLast(perPageLast - rows);
       return;
@@ -93,11 +105,15 @@ const Students = () => {
   const searchHandler = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
-    setFilteredStudents(true);
+    if (search.length > 1) {
+      setFilteredStudents(true);
+    } else {
+      setFilteredStudents(false);
+    }
   };
 
   useEffect(() => {
-    getStudents(skip, rows);
+    getStudents(rows, skip);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, rows]);
   return (
@@ -107,6 +123,7 @@ const Students = () => {
         search={search}
         setSearch={setSearch}
         setAddUpdate={setAddUpdate}
+        setFilteredStudents={setFilteredStudents}
       />
       <div className={styles.addUpdateModal}>
         {addUpdate && (
@@ -160,6 +177,8 @@ const Students = () => {
               backwardHandler={backwardHandler}
               forwardHandler={forwardHandler}
               search={search}
+              skip={skip}
+              rows={rows}
             />
           ) : (
             <StudentsList
@@ -176,6 +195,27 @@ const Students = () => {
           )}
         </>
       )}
+      <div className={styles.row}>
+        <p className={styles.perPage}>
+          Rows per page:{" "}
+          <select onChange={(e) => selectChangeHandler(e)}>
+            <option value="6">6</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+          </select>
+        </p>
+        <p>
+          {perPageFirst} - {perPageLast} of {allStudents.length}
+        </p>
+        <div className={styles.buttons}>
+          <button>
+            <MdOutlineArrowBackIosNew onClick={backwardHandler} />
+          </button>
+          <button>
+            <MdOutlineArrowForwardIos onClick={forwardHandler} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

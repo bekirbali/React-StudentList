@@ -11,7 +11,7 @@ const StudentContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
 
-  const getStudents = async (skip, rows) => {
+  const getStudents = async (rows, skip) => {
     setLoading(true);
     try {
       const { data } = await axios.get(
