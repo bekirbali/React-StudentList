@@ -39,6 +39,10 @@ const AddUpdateStudent = ({
     toastSuccessNotify(`${firstName} added successfully`);
   };
 
+  const closeModal = () => {
+    setAddUpdate("");
+  };
+
   const updateHandler = (e) => {
     e.preventDefault();
     setAddUpdate("");
@@ -72,7 +76,7 @@ const AddUpdateStudent = ({
               <ImCancelCircle
                 size={20}
                 className={styles.cancel}
-                onClick={addHandler}
+                onClick={closeModal}
               />
               <h1>Add new students </h1>
               <input
@@ -127,7 +131,7 @@ const AddUpdateStudent = ({
               <ImCancelCircle
                 size={20}
                 className={styles.cancel}
-                onClick={addHandler}
+                onClick={closeModal}
               />
               <h1>Update {firstName}</h1>
               <input
