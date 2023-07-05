@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { toastErrorNotify } from "../utils/Toastify";
 
 export const StudentContext = createContext();
@@ -9,8 +9,10 @@ const StudentContextProvider = ({ children }) => {
   const [allStudents, setAllStudents] = useState([]);
   const [addUpdate, setAddUpdate] = useState("");
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   const getStudents = async (skip, rows) => {
+    setLoading(true);
     try {
       const { data } = await axios.get(
         `https://dummyjson.com/users?limit=${rows}&skip=${skip}`
@@ -20,6 +22,7 @@ const StudentContextProvider = ({ children }) => {
         "https://dummyjson.com/users?limit=0"
       );
       setAllStudents(allStudentsList.data.users);
+      setLoading(false);
     } catch (error) {
       toastErrorNotify(`Getting data failed, ${error}`);
     }
@@ -67,6 +70,8 @@ const StudentContextProvider = ({ children }) => {
     setStudents,
     loading,
     setLoading,
+    search,
+    setSearch,
   };
 
   return (

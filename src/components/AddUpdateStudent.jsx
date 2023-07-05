@@ -4,6 +4,8 @@ import styles from "../styles/addUpdateStudent.module.scss";
 
 import { ImCancelCircle } from "react-icons/im";
 
+import { toastSuccessNotify } from "../utils/Toastify";
+
 const AddUpdateStudent = ({
   id,
   firstName,
@@ -34,6 +36,7 @@ const AddUpdateStudent = ({
     setPhone("");
     setCompany("");
     setImage("");
+    toastSuccessNotify(`${firstName} added successfully`);
   };
 
   const updateHandler = (e) => {
@@ -46,6 +49,7 @@ const AddUpdateStudent = ({
     setPhone("");
     setCompany("");
     setImage("");
+    toastSuccessNotify(`${firstName} updated successfully`);
   };
 
   const closeModalHandler = () => {

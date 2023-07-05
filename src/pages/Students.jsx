@@ -13,6 +13,10 @@ import {
 import AddUpdateStudent from "../components/AddUpdateStudent";
 import { toastSuccessNotify } from "../utils/Toastify";
 
+import loadingGif from "../assets/loading.gif";
+import TopBar from "../components/TopBar";
+import StudentsList from "../components/StudentsList";
+
 const Students = () => {
   const {
     students,
@@ -22,6 +26,8 @@ const Students = () => {
     setAddUpdate,
     deleteStudent,
     loading,
+    search,
+    setSearch,
   } = useContext(StudentContext);
 
   const [skip, setSkip] = useState(0);
@@ -89,24 +95,20 @@ const Students = () => {
     toastSuccessNotify(`${name} deleted`);
   };
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setSkip(0);
+    setPerPageFirst(1);
+    setPerPageLast(rows);
+  };
+
   useEffect(() => {
     getStudents(skip, rows);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, rows]);
   return (
     <div className={styles.students}>
-      <div className={styles.topBar}>
-        <h1>Students List</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className={styles.search}>
-            <input type="text" placeholder="Search..." />
-            <span>
-              <AiOutlineSearch size={18} />
-            </span>
-          </div>
-          <button onClick={() => setAddUpdate("add")}>Add New Student</button>
-        </form>
-      </div>{" "}
+      <TopBar searchHandler={searchHandler} />
       <div className={styles.addUpdateModal}>
         {addUpdate && (
           <AddUpdateStudent
@@ -138,61 +140,27 @@ const Students = () => {
         <p>Company</p>
         <div className={styles.titleIcon}></div>
       </div>
-      {loading && <h1>Loading...</h1>}
+      {loading && (
+        <div className={styles.loading}>
+          <img
+            src={loadingGif}
+            alt="https://dribbble.com/shots/4275501-Loading-Screen-Animation-Hourglass"
+          />
+        </div>
+      )}
       {!loading && (
         <>
-          <div className={styles.list}>
-            {students?.map((student) => {
-              const { id, firstName, email, phone, domain, company } = student;
-              return (
-                <div key={student.id} className={styles.student}>
-                  <img src={student.image} alt="" />
-                  <div className={styles.name}>
-                    <p>{firstName}</p>
-                  </div>
-                  <p>{email}</p>
-                  <p>{phone}</p>
-                  <p>{domain}</p>
-                  <p>{company.name}</p>
-                  <p className={styles.icon}>
-                    {
-                      <BsPencil
-                        size={19}
-                        onClick={() => updateHandler(student)}
-                      />
-                    }
-                    {
-                      <FiTrash
-                        size={18}
-                        onClick={() => deleteHandler(id, firstName)}
-                      />
-                    }
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-          <div className={styles.row}>
-            <p>
-              Rows per page:{" "}
-              <select onChange={(e) => selectChangeHandler(e)}>
-                <option value="6">6</option>
-                <option value="12">12</option>
-                <option value="18">18</option>
-              </select>
-            </p>
-            <p>
-              {perPageFirst} - {perPageLast} of {allStudents.length}
-            </p>
-            <div className={styles.buttons}>
-              <button>
-                <MdOutlineArrowBackIosNew onClick={backwardHandler} />
-              </button>
-              <button>
-                <MdOutlineArrowForwardIos onClick={forwardHandler} />
-              </button>
-            </div>
-          </div>
+          <StudentsList
+            students={students}
+            updateHandler={updateHandler}
+            deleteHandler={deleteHandler}
+            selectChangeHandler={selectChangeHandler}
+            perPageFirst={perPageFirst}
+            perPageLast={perPageLast}
+            allStudents={allStudents}
+            backwardHandler={backwardHandler}
+            forwardHandler={forwardHandler}
+          />
         </>
       )}
     </div>
