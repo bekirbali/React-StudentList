@@ -14,6 +14,8 @@ import AddUpdateStudent from "../components/AddUpdateStudent";
 import { toastSuccessNotify } from "../utils/Toastify";
 
 import loadingGif from "../assets/loading.gif";
+import TopBar from "../components/TopBar";
+import StudentsList from "../components/StudentsList";
 
 const Students = () => {
   const {
@@ -106,25 +108,7 @@ const Students = () => {
   }, [skip, rows]);
   return (
     <div className={styles.students}>
-      <div className={styles.topBar}>
-        <h1>Students List</h1>
-        <div className={styles.rightSideElements}>
-          <form onSubmit={searchHandler}>
-            <div className={styles.search}>
-              <input
-                type="text"
-                placeholder="Search..."
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
-              />
-              <span>
-                <AiOutlineSearch size={18} />
-              </span>
-            </div>
-          </form>
-          <button onClick={() => setAddUpdate("add")}>Add New Student</button>
-        </div>
-      </div>
+      <TopBar />
       <div className={styles.addUpdateModal}>
         {addUpdate && (
           <AddUpdateStudent
@@ -166,7 +150,19 @@ const Students = () => {
       )}
       {!loading && (
         <>
-          <div className={styles.list}>
+          <StudentsList
+            students={students}
+            updateHandler={updateHandler}
+            deleteHandler={deleteHandler}
+            selectChangeHandler={selectChangeHandler}
+            perPageFirst={perPageFirst}
+            perPageLast={perPageLast}
+            allStudents={allStudents}
+            backwardHandler={backwardHandler}
+            forwardHandler={forwardHandler}
+          />
+
+          {/* <div className={styles.list}>
             {students?.map((student) => {
               const { id, firstName, email, phone, domain, company } = student;
               return (
@@ -217,7 +213,7 @@ const Students = () => {
                 <MdOutlineArrowForwardIos onClick={forwardHandler} />
               </button>
             </div>
-          </div>
+          </div> */}
         </>
       )}
     </div>
