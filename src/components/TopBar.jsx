@@ -3,15 +3,8 @@ import styles from "../styles/students.module.scss";
 import { StudentContext } from "../context/StudentContext";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const TopBar = () => {
+const TopBar = ({ searchHandler }) => {
   const { setAddUpdate, search, setSearch } = useContext(StudentContext);
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-    // setSkip(0);
-    // setPerPageFirst(1);
-    // setPerPageLast(rows);
-  };
 
   return (
     <div className={styles.topBar}>

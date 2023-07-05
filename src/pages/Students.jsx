@@ -108,7 +108,7 @@ const Students = () => {
   }, [skip, rows]);
   return (
     <div className={styles.students}>
-      <TopBar />
+      <TopBar searchHandler={searchHandler} />
       <div className={styles.addUpdateModal}>
         {addUpdate && (
           <AddUpdateStudent
@@ -161,59 +161,6 @@ const Students = () => {
             backwardHandler={backwardHandler}
             forwardHandler={forwardHandler}
           />
-
-          {/* <div className={styles.list}>
-            {students?.map((student) => {
-              const { id, firstName, email, phone, domain, company } = student;
-              return (
-                <div key={student.id} className={styles.student}>
-                  <img src={student.image} alt="" />
-                  <div className={styles.name}>
-                    <p>{firstName}</p>
-                  </div>
-                  <p>{email}</p>
-                  <p>{phone}</p>
-                  <p>{domain}</p>
-                  <p>{company.name}</p>
-                  <p className={styles.icon}>
-                    {
-                      <BsPencil
-                        size={19}
-                        onClick={() => updateHandler(student)}
-                      />
-                    }
-                    {
-                      <FiTrash
-                        size={18}
-                        onClick={() => deleteHandler(id, firstName)}
-                      />
-                    }
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-          <div className={styles.row}>
-            <p className={styles.perPage}>
-              Rows per page:{" "}
-              <select onChange={(e) => selectChangeHandler(e)}>
-                <option value="6">6</option>
-                <option value="12">12</option>
-                <option value="18">18</option>
-              </select>
-            </p>
-            <p>
-              {perPageFirst} - {perPageLast} of {allStudents.length}
-            </p>
-            <div className={styles.buttons}>
-              <button>
-                <MdOutlineArrowBackIosNew onClick={backwardHandler} />
-              </button>
-              <button>
-                <MdOutlineArrowForwardIos onClick={forwardHandler} />
-              </button>
-            </div>
-          </div> */}
         </>
       )}
     </div>
