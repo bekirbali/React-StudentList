@@ -14,7 +14,6 @@ import {
   MdOutlineArrowBackIosNew,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
-import { ImVolumeHigh } from "react-icons/im";
 
 const Students = () => {
   const {
