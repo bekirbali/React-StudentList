@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { sidebarListItems } from "../utils/Arrays";
+import { sidebarListItems } from "../utils/Array";
 import { FiLogOut } from "react-icons/fi";
 
 import avatar from "../assets/avatar.png";
