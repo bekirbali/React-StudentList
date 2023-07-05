@@ -108,7 +108,12 @@ const Students = () => {
   }, [skip, rows]);
   return (
     <div className={styles.students}>
-      <TopBar searchHandler={searchHandler} />
+      <TopBar
+        searchHandler={searchHandler}
+        search={search}
+        setSearch={setSearch}
+        setAddUpdate={setAddUpdate}
+      />
       <div className={styles.addUpdateModal}>
         {addUpdate && (
           <AddUpdateStudent

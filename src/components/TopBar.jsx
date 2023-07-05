@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "../styles/students.module.scss";
-import { StudentContext } from "../context/StudentContext";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const TopBar = ({ searchHandler }) => {
-  const { setAddUpdate, search, setSearch } = useContext(StudentContext);
-
+const TopBar = ({ searchHandler, search, setSearch, setAddUpdate }) => {
   return (
     <div className={styles.topBar}>
       <h1>Students List</h1>
