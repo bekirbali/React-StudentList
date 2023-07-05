@@ -2,20 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { StudentContext } from "../context/StudentContext";
 import styles from "../styles/students.module.scss";
 
-import { BsPencil } from "react-icons/bs";
-import { FiTrash } from "react-icons/fi";
-import { AiOutlineSearch } from "react-icons/ai";
-import {
-  MdOutlineArrowBackIosNew,
-  MdOutlineArrowForwardIos,
-} from "react-icons/md";
-
 import AddUpdateStudent from "../components/AddUpdateStudent";
 import { toastSuccessNotify } from "../utils/Toastify";
 
 import loadingGif from "../assets/loading.gif";
 import TopBar from "../components/TopBar";
 import StudentsList from "../components/StudentsList";
+import SearchResultsList from "../components/SearchResultsList";
 
 const Students = () => {
   const {
@@ -29,6 +22,8 @@ const Students = () => {
     search,
     setSearch,
   } = useContext(StudentContext);
+
+  const [filteredStudents, setFilteredStudents] = useState(false);
 
   const [skip, setSkip] = useState(0);
   const [rows, setRows] = useState(6);
@@ -97,9 +92,8 @@ const Students = () => {
 
   const searchHandler = (e) => {
     e.preventDefault();
-    setSkip(0);
-    setPerPageFirst(1);
-    setPerPageLast(rows);
+    setSearch(e.target.value);
+    setFilteredStudents(true);
   };
 
   useEffect(() => {
@@ -155,17 +149,31 @@ const Students = () => {
       )}
       {!loading && (
         <>
-          <StudentsList
-            students={students}
-            updateHandler={updateHandler}
-            deleteHandler={deleteHandler}
-            selectChangeHandler={selectChangeHandler}
-            perPageFirst={perPageFirst}
-            perPageLast={perPageLast}
-            allStudents={allStudents}
-            backwardHandler={backwardHandler}
-            forwardHandler={forwardHandler}
-          />
+          {filteredStudents ? (
+            <SearchResultsList
+              updateHandler={updateHandler}
+              deleteHandler={deleteHandler}
+              selectChangeHandler={selectChangeHandler}
+              perPageFirst={perPageFirst}
+              perPageLast={perPageLast}
+              allStudents={allStudents}
+              backwardHandler={backwardHandler}
+              forwardHandler={forwardHandler}
+              search={search}
+            />
+          ) : (
+            <StudentsList
+              students={students}
+              updateHandler={updateHandler}
+              deleteHandler={deleteHandler}
+              selectChangeHandler={selectChangeHandler}
+              perPageFirst={perPageFirst}
+              perPageLast={perPageLast}
+              allStudents={allStudents}
+              backwardHandler={backwardHandler}
+              forwardHandler={forwardHandler}
+            />
+          )}
         </>
       )}
     </div>
