@@ -2,22 +2,8 @@ import React from "react";
 import styles from "../styles/students.module.scss";
 import { BsPencil } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
-import {
-  MdOutlineArrowBackIosNew,
-  MdOutlineArrowForwardIos,
-} from "react-icons/md";
 
-const StudentsList = ({
-  students,
-  updateHandler,
-  deleteHandler,
-  selectChangeHandler,
-  perPageFirst,
-  perPageLast,
-  allStudents,
-  backwardHandler,
-  forwardHandler,
-}) => {
+const StudentsList = ({ students, updateHandler, deleteHandler }) => {
   return (
     <>
       <div className={styles.list}>
@@ -45,27 +31,6 @@ const StudentsList = ({
             </div>
           );
         })}
-      </div>
-      <div className={styles.row}>
-        <p className={styles.perPage}>
-          Rows per page:{" "}
-          <select onChange={(e) => selectChangeHandler(e)}>
-            <option value="6">6</option>
-            <option value="12">12</option>
-            <option value="18">18</option>
-          </select>
-        </p>
-        <p>
-          {perPageFirst} - {perPageLast} of {allStudents.length}
-        </p>
-        <div className={styles.buttons}>
-          <button>
-            <MdOutlineArrowBackIosNew onClick={backwardHandler} />
-          </button>
-          <button>
-            <MdOutlineArrowForwardIos onClick={forwardHandler} />
-          </button>
-        </div>
       </div>
     </>
   );

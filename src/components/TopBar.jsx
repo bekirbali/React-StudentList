@@ -2,10 +2,17 @@ import React from "react";
 import styles from "../styles/students.module.scss";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const TopBar = ({ searchHandler, search, setSearch, setAddUpdate }) => {
+const TopBar = ({
+  searchHandler,
+  search,
+  setSearch,
+  setAddUpdate,
+  setFilteredStudents,
+}) => {
   const submitHandler = (e) => {
     e.preventDefault();
     setSearch("");
+    setFilteredStudents(false);
   };
   return (
     <div className={styles.topBar}>
@@ -16,7 +23,7 @@ const TopBar = ({ searchHandler, search, setSearch, setAddUpdate }) => {
             <input
               type="text"
               placeholder="Search..."
-              onChange={(e) => searchHandler(e)}
+              onChange={searchHandler}
               value={search}
             />
             <span>
