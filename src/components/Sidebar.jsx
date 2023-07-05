@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { sidebarListItems } from "../utils/Arrays";
+import { sidebarListItems } from "../utils/Array";
 import { FiLogOut } from "react-icons/fi";
 
 import avatar from "../assets/avatar.png";
@@ -10,23 +10,12 @@ import styles from "../styles/sidebar.module.scss";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const [active, setActive] = useState("Home");
-
-  const clickHandler = ({ path, name }) => {
-    // navigate(path);
-    // setActive(name);
-    localStorage.setItem("active", name);
-  };
 
   const logoutHandler = () => {
     navigate("/");
     localStorage.removeItem("auth");
     localStorage.removeItem("active");
   };
-
-  // useEffect(() => {
-  //   setActive(localStorage.getItem("active" || active));
-  // }, []);
 
   return (
     <nav className={styles.sidebar}>
@@ -42,7 +31,6 @@ const Sidebar = () => {
             <NavLink
               className={styles.navLink}
               key={item.name}
-              onClick={() => clickHandler(item)}
               to={item.path}
               end
               style={({ isActive }) => {
