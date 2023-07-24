@@ -41,6 +41,12 @@ const AddUpdateStudent = ({
 
   const closeModal = () => {
     setAddUpdate("");
+    setEmail("");
+    setDomain("");
+    setFirstName("");
+    setPhone("");
+    setCompany("");
+    setImage("");
   };
 
   const updateHandler = (e) => {
