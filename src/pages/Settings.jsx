@@ -8,10 +8,10 @@ const Settings = () => {
       <div className={`${styles.card} ${styles.settings}`}>
         <div>
           <GiSettingsKnobs size={60} style={{ border: "1px solid white" }} />
-          <h2>Report</h2>
+          <h2>Settings</h2>
         </div>
         <div className={styles.number}>
-          <h3>26</h3>
+          <h3>13</h3>
         </div>
       </div>
     </div>
